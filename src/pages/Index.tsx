@@ -1,16 +1,48 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useEffect } from "react";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import Menu from "@/components/Menu";
+import About from "@/components/About";
+import Event from "@/components/Event";
+import Activities from "@/components/Activities";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
+import { useReveal } from "@/hooks/useReveal";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
+  useReveal();
+
+  useEffect(() => {
+    document.title = "Chicago Lounge — Café & Restaurang | Katrineholm";
+    const ensureMeta = (name: string, content: string) => {
+      let m = document.querySelector(`meta[name="${name}"]`);
+      if (!m) {
+        m = document.createElement("meta");
+        m.setAttribute("name", name);
+        document.head.appendChild(m);
+      }
+      m.setAttribute("content", content);
+    };
+    ensureMeta(
+      "description",
+      "Chicago Lounge i Katrineholm — exklusiv café & restaurang med lyxig meny, event-lokal på 800 kvm, biljard och PlayStation."
+    );
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+    <div className="min-h-screen bg-background overflow-x-hidden">
+      <Navbar />
+      <main>
+        <Hero />
+        <Menu />
+        <About />
+        <Event />
+        <Activities />
+        <Contact />
+      </main>
+      <Footer />
     </div>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
